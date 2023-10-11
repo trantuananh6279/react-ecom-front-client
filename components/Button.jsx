@@ -6,6 +6,9 @@ const StyledButton = styled.button`
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    &:hover {
+        opacity: 0.9;
+    }
     a {
         padding: 12px 24px;
         color: #fff;

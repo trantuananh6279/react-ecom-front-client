@@ -3,6 +3,7 @@ import ProductItem from './ProductItem';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 import Center from './Center';
+import { useProductContext } from '../context/ProductContext';
 
 const Wrapper = styled.div`
     background-color: #f1f5f8;
@@ -45,6 +46,8 @@ const Wrapper = styled.div`
 `;
 
 export default function Featured() {
+    const { featuredProducts } = useProductContext();
+
     return (
         <Wrapper>
             <Center>
@@ -53,9 +56,9 @@ export default function Featured() {
                     <div className="underline"></div>
                 </div>
                 <div className="container">
-                    <ProductItem />
-                    <ProductItem />
-                    <ProductItem />
+                    {featuredProducts.slice(0, 3).map((product) => (
+                        <ProductItem key={product._id} {...product} />
+                    ))}
                 </div>
                 <Button>
                     <Link to={'/products'}>ALL PRODUCT</Link>
