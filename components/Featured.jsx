@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import ProductItem from './ProductItem';
-import Button from './Button';
 import { Link } from 'react-router-dom';
 import Center from './Center';
 import { useProductContext } from '../context/ProductContext';
+import Spinner from './Spinner';
 
 const Wrapper = styled.div`
     background-color: #f1f5f8;
     padding: 6rem;
+    text-align: center;
     .title {
         text-align: center;
         h2 {
@@ -46,7 +47,7 @@ const Wrapper = styled.div`
 `;
 
 export default function Featured() {
-    const { featuredProducts } = useProductContext();
+    const { featuredProducts, isProductLoading } = useProductContext();
 
     return (
         <Wrapper>
@@ -55,14 +56,23 @@ export default function Featured() {
                     <h2>Featured Products</h2>
                     <div className="underline"></div>
                 </div>
-                <div className="container">
-                    {featuredProducts.slice(0, 3).map((product) => (
-                        <ProductItem key={product._id} {...product} />
-                    ))}
-                </div>
-                <Button>
-                    <Link to={'/products'}>ALL PRODUCT</Link>
-                </Button>
+                {isProductLoading && <Spinner fullWidth={true} />}
+                {!isProductLoading && (
+                    <div className="container">
+                        {featuredProducts.length > 1 &&
+                            featuredProducts
+                                .slice(0, 3)
+                                .map((product) => (
+                                    <ProductItem
+                                        key={product._id}
+                                        {...product}
+                                    />
+                                ))}
+                    </div>
+                )}
+                <Link to={'/products'} className="btn">
+                    ALL PRODUCT
+                </Link>
             </Center>
         </Wrapper>
     );

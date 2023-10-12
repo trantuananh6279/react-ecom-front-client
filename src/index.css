@@ -24,3 +24,16 @@ h5 {
     line-height: 1.25;
     margin-bottom: 0.75rem;
 }
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 12px 24px;
+    color: #eaded7;
+}
+.btn:hover {
+    opacity: 0.9;
+}
