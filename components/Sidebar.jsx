@@ -114,7 +114,12 @@ export default function Sidebar() {
                             const { id, text, url } = link;
                             return (
                                 <li key={id}>
-                                    <Link to={url}>{text}</Link>
+                                    <Link
+                                        to={url}
+                                        onClick={() => toggleSidebar()}
+                                    >
+                                        {text}
+                                    </Link>
                                 </li>
                             );
                         })}

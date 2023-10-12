@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Center from './Center';
-import Button from './Button';
 
 const Wrapper = styled.div`
     padding: 80px 20px;
@@ -64,7 +63,7 @@ export default function Contact() {
                     </p>
                     <form>
                         <input placeholder="Enter Email" />
-                        <Button>Subscribe</Button>
+                        <button className="btn">Subscribe</button>
                     </form>
                 </div>
             </Center>

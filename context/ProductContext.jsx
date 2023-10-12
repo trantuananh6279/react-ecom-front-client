@@ -9,6 +9,8 @@ export function ProductProvider({ children }) {
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const [isOpenSidebar, setIsOpenSidebar] = useState(false);
     const [isProductLoading, setIsProductLoading] = useState(false);
+    const [singleProduct, setSingleProduct] = useState({});
+    const [isSingleProductLoading, setSingleProductLoading] = useState(false);
 
     function toggleSidebar() {
         setIsOpenSidebar((prev) => !prev);
@@ -26,12 +28,24 @@ export function ProductProvider({ children }) {
                 setIsProductLoading(false);
             })
             .catch((err) => {
-                setErr(err);
+                console.log(err);
                 setIsProductLoading(false);
             });
     }, []);
 
-    console.log(products);
+    function fetchSingleProduct(id) {
+        setSingleProductLoading(true);
+        customFetch
+            .get(`/products/${id}`)
+            .then((res) => {
+                setSingleProduct(res.data);
+                setSingleProductLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setIsProductLoading(false);
+            });
+    }
 
     return (
         <ProductContext.Provider
@@ -40,6 +54,10 @@ export function ProductProvider({ children }) {
                 setIsOpenSidebar,
                 toggleSidebar,
                 featuredProducts,
+                fetchSingleProduct,
+                isProductLoading,
+                isSingleProductLoading,
+                singleProduct,
             }}
         >
             {children}

@@ -19,6 +19,7 @@ const Wrapper = styled.div`
         display: block;
         transition: all 0.3s linear;
         height: 100%;
+        object-fit: cover;
     }
     .content {
         display: flex;
@@ -30,11 +31,11 @@ const Wrapper = styled.div`
     }
 `;
 
-export default function ProductItem({ images, name, price }) {
+export default function ProductItem({ _id, images, name, price }) {
     return (
         <Wrapper>
             <div className="img-container">
-                <Link to="#">
+                <Link to={`/products/${_id}`}>
                     <img src={images[0]} />
                 </Link>
             </div>

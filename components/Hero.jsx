@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Center from './Center';
 import { Link } from 'react-router-dom';
-import Button from './Button';
 
 const Wrapper = styled.div`
     display: grid;
@@ -27,6 +26,7 @@ const Wrapper = styled.div`
             height: 550px;
             display: block;
             border-radius: 4px;
+            object-fit: cover;
         }
         .heroImg2 {
             width: 250px;
@@ -34,6 +34,7 @@ const Wrapper = styled.div`
             bottom: 0;
             left: -120px;
             border-radius: 4px;
+            object-fit: cover;
         }
     }
     .img-wrap::before {
@@ -53,6 +54,7 @@ const Wrapper = styled.div`
         padding: 0 20px;
         height: 60vh;
         width: 90vw;
+        margin-top: 76.8px;
         h1 {
             font-size: 40px;
             letter-spacing: 0.1rem;
@@ -78,11 +80,9 @@ export default function Hero() {
                         velit! Repudiandae nisi odit, aperiam odio ducimus,
                         obcaecati libero et quia tempora excepturi quis alias?
                     </p>
-                    <Button>
-                        <Link to={'/products'} className="btn-primary">
-                            SHOP NOW
-                        </Link>
-                    </Button>
+                    <Link to={'/products'} className="btn">
+                        SHOP NOW
+                    </Link>
                 </div>
                 <div className="img-wrap">
                     <img
