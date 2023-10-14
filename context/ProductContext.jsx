@@ -1,16 +1,13 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import { customFetch } from '../utils/axios';
 
 const ProductContext = createContext();
 
 export function ProductProvider({ children }) {
     const [products, setProducts] = useState([]);
+    const [isProductLoading, setIsProductLoading] = useState(false);
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const [isOpenSidebar, setIsOpenSidebar] = useState(false);
-    const [isProductLoading, setIsProductLoading] = useState(false);
-    const [singleProduct, setSingleProduct] = useState({});
-    const [isSingleProductLoading, setSingleProductLoading] = useState(false);
 
     function toggleSidebar() {
         setIsOpenSidebar((prev) => !prev);
@@ -33,31 +30,14 @@ export function ProductProvider({ children }) {
             });
     }, []);
 
-    function fetchSingleProduct(id) {
-        setSingleProductLoading(true);
-        customFetch
-            .get(`/products/${id}`)
-            .then((res) => {
-                setSingleProduct(res.data);
-                setSingleProductLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                setIsProductLoading(false);
-            });
-    }
-
     return (
         <ProductContext.Provider
             value={{
-                isOpenSidebar,
-                setIsOpenSidebar,
-                toggleSidebar,
-                featuredProducts,
-                fetchSingleProduct,
+                products,
                 isProductLoading,
-                isSingleProductLoading,
-                singleProduct,
+                featuredProducts,
+                isOpenSidebar,
+                toggleSidebar,
             }}
         >
             {children}

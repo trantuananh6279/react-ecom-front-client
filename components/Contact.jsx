@@ -10,7 +10,6 @@ const Wrapper = styled.div`
         margin-bottom: 12px;
     }
     p {
-        font-size: 14px;
         margin-bottom: 20px;
     }
     form {
@@ -29,17 +28,17 @@ const Wrapper = styled.div`
             border: 1px solid #ccc;
         }
     }
-    @media (min-width: 767px) {
+    @media (min-width: 768px) {
         padding: 240px 0;
+        h3 {
+            font-size: 32px;
+        }
         .content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
             justify-content: space-between;
             gap: 8rem;
-            h3 {
-                font-size: 32px;
-            }
             p {
                 font-size: 16px;
                 line-height: 2;

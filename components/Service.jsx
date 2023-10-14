@@ -7,12 +7,10 @@ const Wrapper = styled.div`
     padding: 80px 20px;
     background-color: #eaded7;
     .title {
-        font-size: 24px;
         margin-bottom: 32px;
         letter-spacing: 0.1rem;
     }
     .desc {
-        font-size: 14px;
         line-height: 1.8;
         color: #795744;
     }
@@ -76,10 +74,10 @@ export default function Service() {
         <Wrapper>
             <Center>
                 <div className="service-top">
-                    <h2 className="title">
+                    <h3 className="title">
                         Custom Furniture <br />
                         Built Only For You
-                    </h2>
+                    </h3>
                     <p className="desc">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Saepe dolorum debitis consectetur reprehenderit non
@@ -92,7 +90,7 @@ export default function Service() {
                         return (
                             <div className="service-item" key={id}>
                                 <span>{icon}</span>
-                                <h2>{title}</h2>
+                                <h4>{title}</h4>
                                 <p>{text}</p>
                             </div>
                         );

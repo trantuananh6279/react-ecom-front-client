@@ -1,22 +1,40 @@
 import styled from 'styled-components';
 import Center from '../components/Center';
+import Filter from '../components/Filter';
+import Sort from '../components/Sort';
+import ProductContainer from '../components/ProductContainer';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr;
-    margin-top: 76.8px;
+    .product-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin: 4rem auto;
+        padding: 0 20px;
+        min-height: calc(100vh - (20vh + 10rem));
+    }
+    @media (min-width: 768px) {
+        .product-container {
+            grid-template-columns: 200px 1.5fr;
+            padding: 0;
+        }
+    }
 `;
 
 export default function ProductsPage() {
     return (
-        <Center>
-            <Wrapper>
-                <div>Search</div>
-                <div>
-                    <div>Sort</div>
-                    <div>Product</div>
+        <Wrapper>
+            <Breadcrumb title={'products'} />
+            <Center>
+                <div className="product-container">
+                    <Filter />
+                    <div>
+                        <Sort />
+                        <ProductContainer />
+                    </div>
                 </div>
-            </Wrapper>
-        </Center>
+            </Center>
+        </Wrapper>
     );
 }

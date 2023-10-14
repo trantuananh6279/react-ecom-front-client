@@ -5,13 +5,12 @@ import Stars from '../components/Stars';
 import AddToCart from '../components/AddToCart';
 import ProductImages from '../components/ProductImages';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useProductContext } from '../context/ProductContext';
+import { useEffect, useState } from 'react';
 import Spinner from '../components/Spinner';
 import formatPrice from '../utils/formatPrice';
+import { customFetch } from '../utils/axios';
 
 const Wrapper = styled.div`
-    margin-top: 76.8px;
     .back-btn {
         margin: 80px 0 30px 20px;
         padding: 6px 12px;
@@ -35,7 +34,6 @@ const Wrapper = styled.div`
             }
             .desc {
                 margin-bottom: 20px;
-                font-size: 14px;
                 color: #324d67;
                 line-height: 2;
             }
@@ -76,14 +74,25 @@ const Wrapper = styled.div`
 `;
 
 export default function SingleProductPage() {
+    const [isSingleProductLoading, setSingleProductLoading] = useState(false);
+    const [singleProduct, setSingleProduct] = useState({});
     const { id } = useParams();
-    const { fetchSingleProduct, isSingleProductLoading, singleProduct } =
-        useProductContext();
+
     const { name, company, images, rating, stock, price, description } =
         singleProduct;
 
     useEffect(() => {
-        fetchSingleProduct(id);
+        setSingleProductLoading(true);
+        customFetch
+            .get(`/products/${id}`)
+            .then((res) => {
+                setSingleProduct(res.data);
+                setSingleProductLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setIsProductLoading(false);
+            });
     }, [id]);
 
     return (

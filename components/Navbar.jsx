@@ -8,13 +8,8 @@ import { useProductContext } from '../context/ProductContext';
 import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
 
 const Wrapper = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     font-size: 20px;
     padding: 12px 20px;
-    background-color: #fff;
     z-index: 100;
     text-transform: capitalize;
     .nav-header {
@@ -29,6 +24,7 @@ const Wrapper = styled.div`
             svg {
                 width: 28px;
                 height: 28px;
+                color: #ab7a5f;
             }
         }
     }
@@ -37,7 +33,6 @@ const Wrapper = styled.div`
         display: none;
     }
     @media (min-width: 768px) {
-        position: relative;
         padding: 10px 0;
         display: flex;
         justify-content: space-between;
