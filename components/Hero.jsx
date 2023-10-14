@@ -9,9 +9,9 @@ const Wrapper = styled.div`
     align-items: center;
     height: calc(100vh - 80px);
     h1 {
-        font-size: 54px;
         margin-bottom: 32px;
         line-height: 1;
+        letter-spacing: 0.2rem;
     }
     p {
         font-size: 20px;
@@ -54,7 +54,6 @@ const Wrapper = styled.div`
         padding: 0 20px;
         height: 60vh;
         width: 90vw;
-        margin-top: 76.8px;
         h1 {
             font-size: 40px;
             letter-spacing: 0.1rem;

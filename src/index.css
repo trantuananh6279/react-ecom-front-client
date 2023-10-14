@@ -24,6 +24,47 @@ h5 {
     line-height: 1.25;
     margin-bottom: 0.75rem;
 }
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1.25rem;
+}
+h5 {
+    font-size: 0.875rem;
+}
+@media (min-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+    h4 {
+        font-size: 1.5rem;
+    }
+    h5 {
+        font-size: 1rem;
+    }
+    body {
+        font-size: 1rem;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+        line-height: 1;
+    }
+}
 .btn {
     display: inline-block;
     background-color: var(--primary-color);
@@ -36,4 +77,13 @@ h5 {
 }
 .btn:hover {
     opacity: 0.9;
+}
+
+@media (max-width: 767px) {
+    p {
+        font-size: 14px;
+    }
+}
+button {
+    cursor: pointer;
 }

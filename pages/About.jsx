@@ -3,7 +3,6 @@ import Center from '../components/Center';
 import Breadcrumb from '../components/Breadcrumb';
 
 const Wrapper = styled.div`
-    margin-top: 76.8px;
     .about-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -29,12 +28,14 @@ const Wrapper = styled.div`
             margin-top: 32px;
             line-height: 2;
             color: #617d98;
-            font-size: 14px;
         }
     }
     @media (min-width: 768px) {
         .about-container {
             grid-template-columns: 1fr 1fr;
+            h2 {
+                font-size: 40px;
+            }
         }
     }
 `;

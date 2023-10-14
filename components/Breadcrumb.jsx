@@ -23,12 +23,15 @@ const Wrapper = styled.div`
         a:hover {
             color: #453227;
         }
+        span {
+            padding-left: 0.5rem;
+        }
     }
     @media (min-width: 768px) {
         .pageHero-container {
             padding: 0;
             h3 {
-                font-size: 28px;
+                font-size: 32px;
             }
         }
     }
@@ -40,10 +43,10 @@ export default function Breadcrumb({ title, product }) {
             <Center>
                 <div className="pageHero-container">
                     <h3>
-                        <Link to={'/'}>Home </Link>
+                        <Link to={'/'}>Home</Link>
                         {product && (
                             <Link to={'/products'}>/ Products</Link>
-                        )}/ {title}
+                        )}/ <span>{title}</span>
                     </h3>
                 </div>
             </Center>
