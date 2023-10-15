@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useProductContext } from '../context/ProductContext';
 import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
+import { useCartContext } from '../context/CartContext';
 
 const Wrapper = styled.div`
     .sidebar {
@@ -96,6 +97,7 @@ const Wrapper = styled.div`
 
 export default function Sidebar() {
     const { toggleSidebar, isOpenSidebar } = useProductContext();
+    const { cartProducts } = useCartContext();
 
     return (
         <Wrapper>
@@ -114,10 +116,7 @@ export default function Sidebar() {
                             const { id, text, url } = link;
                             return (
                                 <li key={id}>
-                                    <Link
-                                        to={url}
-                                        onClick={() => toggleSidebar()}
-                                    >
+                                    <Link to={url} onClick={toggleSidebar}>
                                         {text}
                                     </Link>
                                 </li>
@@ -126,10 +125,14 @@ export default function Sidebar() {
                     </ul>
                 </nav>
                 <div className="actions-wrap">
-                    <Link to={'/cart'} className="cart-btn">
+                    <Link
+                        to={'/cart'}
+                        className="cart-btn"
+                        onClick={toggleSidebar}
+                    >
                         Cart
                         <FaShoppingCart />
-                        <span>1</span>
+                        <span>{cartProducts.length}</span>
                     </Link>
                     <Link to={'/login'} className="login-btn">
                         Login
