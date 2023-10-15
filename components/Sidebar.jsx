@@ -4,8 +4,12 @@ import { links } from '../utils/contant';
 import { Link } from 'react-router-dom';
 import { IoCloseSharp } from 'react-icons/io5';
 import { useProductContext } from '../context/ProductContext';
-import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
+import { FaShoppingCart, FaUserPlus, FaUserMinus } from 'react-icons/fa';
 import { useCartContext } from '../context/CartContext';
+import {
+    getUserFromLocalStorage,
+    removeUserFromLocalStorage,
+} from '../utils/localStorage';
 
 const Wrapper = styled.div`
     .sidebar {
@@ -98,6 +102,7 @@ const Wrapper = styled.div`
 export default function Sidebar() {
     const { toggleSidebar, isOpenSidebar } = useProductContext();
     const { cartProducts } = useCartContext();
+    const user = getUserFromLocalStorage();
 
     return (
         <Wrapper>
@@ -134,10 +139,21 @@ export default function Sidebar() {
                         <FaShoppingCart />
                         <span>{cartProducts.length}</span>
                     </Link>
-                    <Link to={'/login'} className="login-btn">
-                        Login
-                        <FaUserPlus />
-                    </Link>
+                    {user ? (
+                        <Link
+                            to={'/login'}
+                            onClick={removeUserFromLocalStorage}
+                            className="login-btn"
+                        >
+                            Logout
+                            <FaUserMinus />
+                        </Link>
+                    ) : (
+                        <Link to={'/login'} className="login-btn">
+                            Login
+                            <FaUserPlus />
+                        </Link>
+                    )}
                 </div>
             </aside>
         </Wrapper>

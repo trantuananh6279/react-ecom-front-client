@@ -5,8 +5,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useProductContext } from '../context/ProductContext';
-import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
+import { FaShoppingCart, FaUserPlus, FaUserMinus } from 'react-icons/fa';
 import { useCartContext } from '../context/CartContext';
+import {
+    getUserFromLocalStorage,
+    removeUserFromLocalStorage,
+} from '../utils/localStorage';
 
 const Wrapper = styled.div`
     font-size: 20px;
@@ -86,6 +90,7 @@ const Wrapper = styled.div`
 export default function Navbar() {
     const { toggleSidebar } = useProductContext();
     const { cartProducts } = useCartContext();
+    const user = getUserFromLocalStorage();
 
     return (
         <Center>
@@ -112,10 +117,21 @@ export default function Navbar() {
                         <FaShoppingCart />
                         <span>{cartProducts.length}</span>
                     </Link>
-                    <Link to={'/login'} className="login-btn">
-                        Login
-                        <FaUserPlus />
-                    </Link>
+                    {user ? (
+                        <Link
+                            to={'/login'}
+                            onClick={removeUserFromLocalStorage}
+                            className="login-btn"
+                        >
+                            Logout
+                            <FaUserMinus />
+                        </Link>
+                    ) : (
+                        <Link to={'/login'} className="login-btn">
+                            Login
+                            <FaUserPlus />
+                        </Link>
+                    )}
                 </div>
             </Wrapper>
         </Center>
