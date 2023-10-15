@@ -125,7 +125,7 @@ export default function SingleProductPage() {
                                     {company}
                                 </p>
                                 <hr />
-                                <AddToCart {...singleProduct} />
+                                <AddToCart singleProduct={singleProduct} />
                             </div>
                         </div>
                     </Center>

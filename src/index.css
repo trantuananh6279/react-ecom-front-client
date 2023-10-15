@@ -74,6 +74,7 @@ h5 {
     cursor: pointer;
     padding: 12px 24px;
     color: #eaded7;
+    text-transform: uppercase;
 }
 .btn:hover {
     opacity: 0.9;

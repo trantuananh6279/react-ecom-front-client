@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useProductContext } from '../context/ProductContext';
 import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
+import { useCartContext } from '../context/CartContext';
 
 const Wrapper = styled.div`
     font-size: 20px;
@@ -84,6 +85,7 @@ const Wrapper = styled.div`
 
 export default function Navbar() {
     const { toggleSidebar } = useProductContext();
+    const { cartProducts } = useCartContext();
 
     return (
         <Center>
@@ -108,7 +110,7 @@ export default function Navbar() {
                     <Link to={'/cart'} className="cart-btn">
                         Cart
                         <FaShoppingCart />
-                        <span>1</span>
+                        <span>{cartProducts.length}</span>
                     </Link>
                     <Link to={'/login'} className="login-btn">
                         Login

@@ -6,7 +6,6 @@ const Wrapper = styled.div`
     grid-template-columns: repeat(3, 1fr);
     width: 140px;
     place-items: center;
-
     button {
         display: flex;
         justify-content: center;
@@ -28,7 +27,7 @@ const Wrapper = styled.div`
 
 export default function AmountButton({ increase, decrease, amount }) {
     return (
-        <Wrapper>
+        <Wrapper className="amount-btns">
             <button onClick={decrease}>
                 <AiOutlineMinus />
             </button>

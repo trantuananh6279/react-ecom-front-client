@@ -9,11 +9,14 @@ import ErrorPage from '../pages/Error';
 import LoginPage from '../pages/Login';
 import Sidebar from '../components/Sidebar';
 import SingleProductPage from '../pages/SingleProduct';
+import { useState } from 'react';
 
 function App() {
+    const [showNav, setShowNav] = useState(true);
+
     return (
         <Router>
-            <Navbar />
+            {showNav && <Navbar />}
             <Sidebar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -21,10 +24,13 @@ function App() {
                 <Route path="products" element={<ProductsPage />} />
                 <Route path="products/:id" element={<SingleProductPage />} />
                 <Route path="cart" element={<CartPage />} />
-                <Route path="login" element={<LoginPage />} />
+                <Route
+                    path="login"
+                    element={<LoginPage setShowNav={setShowNav} />}
+                />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
-            <Footer />
+            {showNav && <Footer />}
         </Router>
     );
 }
