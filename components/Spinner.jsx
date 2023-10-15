@@ -12,9 +12,9 @@ export default function Spinner({ fullWidth }) {
     if (fullWidth) {
         return (
             <Wrapper className="hidden md:w-full md:flex md:justify-center">
-                <PacmanLoader color={'#ab7a5f'} speedMultiplier={1} />
+                <PacmanLoader color={'#eaded7'} speedMultiplier={1} />
             </Wrapper>
         );
     }
-    return <PacmanLoader color={'#ab7a5f'} speedMultiplier={1} />;
+    return <PacmanLoader color={'#eaded7'} speedMultiplier={1} />;
 }

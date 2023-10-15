@@ -10,6 +10,10 @@ import LoginPage from '../pages/Login';
 import Sidebar from '../components/Sidebar';
 import SingleProductPage from '../pages/SingleProduct';
 import { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ProtectedRoute from '../pages/ProtectedRoute';
+import VerifyAccountPage from '../pages/VerifyAccount';
 
 function App() {
     const [showNav, setShowNav] = useState(true);
@@ -26,11 +30,20 @@ function App() {
                 <Route path="cart" element={<CartPage />} />
                 <Route
                     path="login"
-                    element={<LoginPage setShowNav={setShowNav} />}
+                    element={
+                        <ProtectedRoute>
+                            <LoginPage setShowNav={setShowNav} />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/user/verify-email"
+                    element={<VerifyAccountPage />}
                 />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
             {showNav && <Footer />}
+            <ToastContainer position="top-center" />
         </Router>
     );
 }
