@@ -17,7 +17,6 @@ const Wrapper = styled.div`
         border-top: 4px solid #ab7a5f;
         border-radius: 4px;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
         h4 {
             margin: 16px 0;
             font-size: 20px;
@@ -27,6 +26,8 @@ const Wrapper = styled.div`
             flex-direction: column;
             gap: 0.75rem;
             input {
+                display: block;
+                width: 100%;
                 padding: 10px 12px;
                 margin-bottom: 8px;
                 border: 1px solid #ccc;
@@ -43,6 +44,14 @@ const Wrapper = styled.div`
             span {
                 color: #ab7a5f;
                 text-decoration: underline;
+            }
+            .password-wrap {
+                margin-bottom: 12px;
+                text-align: right;
+                a {
+                    color: #ab7a5f;
+                    font-size: 12px;
+                }
             }
         }
     }
@@ -142,13 +151,18 @@ export default function LoginPage({ setShowNav }) {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        <div className="password-wrap">
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <Link to={'/forgot-password'}>
+                                Forgot Password?
+                            </Link>
+                        </div>
                         <button className="btn">
                             {isMember ? 'Login' : 'Register'}
                         </button>
