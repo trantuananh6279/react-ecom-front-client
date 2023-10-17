@@ -14,6 +14,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from '../pages/ProtectedRoute';
 import VerifyAccountPage from '../pages/VerifyAccount';
+import ForgotPasswordPage from '../pages/ForgotPassword';
+import ResetPasswordPage from '../pages/ResetPassword';
 
 function App() {
     const [showNav, setShowNav] = useState(true);
@@ -36,9 +38,14 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route path="verify-email" element={<VerifyAccountPage />} />
                 <Route
-                    path="/user/verify-email"
-                    element={<VerifyAccountPage />}
+                    path="forgot-password"
+                    element={<ForgotPasswordPage setShowNav={setShowNav} />}
+                />
+                <Route
+                    path="reset-password"
+                    element={<ResetPasswordPage setShowNav={setShowNav} />}
                 />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
