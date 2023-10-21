@@ -33,9 +33,6 @@ const Wrapper = styled.div`
                 border: 1px solid #ccc;
                 font-size: 16px;
             }
-            .btn {
-                padding: 8px 24px;
-            }
             a {
                 font-size: 14px;
                 margin-top: 12px;

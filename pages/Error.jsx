@@ -18,7 +18,7 @@ const Wrapper = styled.div`
         }
         a {
             margin-top: 20px;
-            padding: 6px 12px;
+            padding: 8px 12px;
         }
     }
     @media (min-width: 768px) {
