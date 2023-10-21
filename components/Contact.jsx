@@ -24,7 +24,6 @@ const Wrapper = styled.div`
             border-radius: 4px;
         }
         button {
-            padding: 7px 20px;
             border: 1px solid #ccc;
         }
     }

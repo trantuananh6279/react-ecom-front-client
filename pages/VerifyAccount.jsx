@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     .verify-container {
         text-align: center;
         a {
-            padding: 6px 12px;
+            padding: 8px 12px;
         }
     }
     @media (min-width: 768px) {

@@ -27,9 +27,6 @@ const Wrapper = styled.div`
                 border: 1px solid #ccc;
                 font-size: 16px;
             }
-            button {
-                padding: 8px 12px;
-            }
         }
     }
     @media (min-width: 768px) {

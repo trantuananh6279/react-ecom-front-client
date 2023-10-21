@@ -142,14 +142,21 @@ export default function Sidebar() {
                     {user ? (
                         <Link
                             to={'/login'}
-                            onClick={removeUserFromLocalStorage}
+                            onClick={() => {
+                                removeUserFromLocalStorage();
+                                toggleSidebar();
+                            }}
                             className="login-btn"
                         >
                             Logout
                             <FaUserMinus />
                         </Link>
                     ) : (
-                        <Link to={'/login'} className="login-btn">
+                        <Link
+                            to={'/login'}
+                            className="login-btn"
+                            onClick={toggleSidebar}
+                        >
                             Login
                             <FaUserPlus />
                         </Link>

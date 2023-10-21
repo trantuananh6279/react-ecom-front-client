@@ -12,8 +12,10 @@ export function CartProvider({ children }) {
         getProductFromLocalStorage()
     );
     const [products, setProducts] = useState([]);
+    const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
 
     function addToCart(productId, amount) {
+        setIsPaymentSuccess(false);
         if (amount) {
             for (let i = 0; i < amount; i++) {
                 setCartProducts((prev) => [...prev, productId]);
@@ -68,6 +70,8 @@ export function CartProvider({ children }) {
                 removeProductFromCart,
                 clearCart,
                 paymentSubtotal,
+                isPaymentSuccess,
+                setIsPaymentSuccess,
             }}
         >
             {children}

@@ -32,9 +32,6 @@ const Wrapper = styled.div`
                 font-size: 16px;
                 margin-top: 24px;
             }
-            button {
-                padding: 8px 12px;
-            }
             a {
                 text-align: center;
                 color: #ab7a5f;
@@ -42,7 +39,7 @@ const Wrapper = styled.div`
         }
     }
     @media (min-width: 768px) {
-        .reset-password {
+        .forgot-password {
             width: 450px;
         }
     }

@@ -47,7 +47,7 @@ export default function AboutPage() {
             <Center>
                 <div className="about-container">
                     <div>
-                        <img src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg.a876f19f6786a3aca992.jpeg" />
+                        <img src="https://tta-next-ecom.s3.ap-northeast-1.amazonaws.com/1697905421065-jpeg" />
                     </div>
                     <div>
                         <h2>Our Story</h2>

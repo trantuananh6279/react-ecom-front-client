@@ -8,7 +8,6 @@ const Wrapper = styled.div`
     margin-top: 2rem;
     .btn {
         margin-top: 16px;
-        padding: 8px 16px;
         font-size: 14px;
     }
 `;

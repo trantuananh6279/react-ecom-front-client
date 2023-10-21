@@ -6,8 +6,6 @@ import { useCartContext } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import CartColumn from '../components/CartColumn';
 import CartTotals from '../components/CartTotals';
-import { useEffect, useState } from 'react';
-import { customFetch } from '../utils/axios';
 
 const Wrapper = styled.div`
     .empty {
@@ -41,7 +39,7 @@ const Wrapper = styled.div`
 
         .btn {
             text-transform: capitalize;
-            padding: 4px 8px;
+            padding: 6px 10px;
             letter-spacing: 0.1rem;
             font-size: 14px;
         }
@@ -50,18 +48,12 @@ const Wrapper = styled.div`
             color: #fff;
             border: none;
             border-radius: 4px;
-            padding: 4px 8px;
+            padding: 6px 10px;
             text-transform: capitalize;
             cursor: pointer;
             letter-spacing: 0.1rem;
             font-size: 14px;
         }
-    }
-    .btn.checkout {
-        width: 100%;
-        margin-top: 16px;
-        padding: 6px 12px;
-        font-size: 14px;
     }
     @media (min-width: 768px) {
         .cart-container {
@@ -74,8 +66,39 @@ const Wrapper = styled.div`
     }
 `;
 
+const StyledDiv = styled.div`
+    display: grid;
+    place-items: center;
+    min-height: calc(100vh - (20vh - 12px));
+    .container {
+        text-align: center;
+        a {
+            padding: 6px 12px;
+            margin-top: 12px;
+        }
+    }
+    @media (min-width: 768px) {
+        min-height: calc(100vh - (20vh - 42px));
+    }
+`;
+
 export default function CartPage() {
-    const { cartProducts, products, clearCart } = useCartContext();
+    const { cartProducts, products, clearCart, isPaymentSuccess } =
+        useCartContext();
+
+    if (isPaymentSuccess) {
+        return (
+            <StyledDiv>
+                <div className="container">
+                    <h3>Thanks for your order!</h3>
+                    <p>We will email when your order will be sent</p>
+                    <Link className="btn" to={'/'}>
+                        Continue shopping
+                    </Link>
+                </div>
+            </StyledDiv>
+        );
+    }
 
     if (cartProducts.length < 1) {
         return (

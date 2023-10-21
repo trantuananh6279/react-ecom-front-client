@@ -86,11 +86,11 @@ export default function Hero() {
                 <div className="img-wrap">
                     <img
                         className="heroImg1"
-                        src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg.a876f19f6786a3aca992.jpeg"
+                        src="https://tta-next-ecom.s3.ap-northeast-1.amazonaws.com/1697905421065-jpeg"
                     />
                     <img
                         className="heroImg2"
-                        src="https://react-course-comfy-sloth-store.netlify.app/static/media/hero-bcg-2.789918645915c8acb36f.jpeg"
+                        src="https://tta-next-ecom.s3.ap-northeast-1.amazonaws.com/1697905421743-jpeg"
                     />
                 </div>
             </Wrapper>

@@ -9,7 +9,7 @@ const StyledImg = styled.img`
 export default function Logo() {
     return (
         <Link to={'/'}>
-            <StyledImg src="https://the-vivid-theme.myshopify.com/cdn/shop/files/vivid-logo2.png?v=1683567381&width=500" />
+            <StyledImg src="https://tta-next-ecom.s3.ap-northeast-1.amazonaws.com/1697905401211-png" />
         </Link>
     );
 }
