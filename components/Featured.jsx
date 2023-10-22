@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Center from './Center';
 import { useProductContext } from '../context/ProductContext';
 import Spinner from './Spinner';
+import { useEffect, useState } from 'react';
+import { customFetch } from '../utils/axios';
 
 const Wrapper = styled.div`
     background-color: #f1f5f8;
@@ -47,7 +49,16 @@ const Wrapper = styled.div`
 `;
 
 export default function Featured() {
-    const { featuredProducts, isProductLoading } = useProductContext();
+    const {
+        featuredProducts,
+        isProductLoading,
+        wishedProductIds,
+        getWishedProductIds,
+    } = useProductContext();
+
+    useEffect(() => {
+        getWishedProductIds();
+    }, []);
 
     return (
         <Wrapper>
@@ -66,6 +77,9 @@ export default function Featured() {
                                     <ProductItem
                                         key={product._id}
                                         {...product}
+                                        wished={wishedProductIds.includes(
+                                            product._id
+                                        )}
                                     />
                                 ))}
                     </div>

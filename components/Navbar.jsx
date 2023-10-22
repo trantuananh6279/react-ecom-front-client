@@ -110,6 +110,11 @@ export default function Navbar() {
                             </li>
                         );
                     })}
+                    {user && (
+                        <li>
+                            <Link to={'/wishlist'}>Wishlist</Link>
+                        </li>
+                    )}
                 </ul>
                 <div className="action-wrap">
                     <Link to={'/cart'} className="cart-btn">
