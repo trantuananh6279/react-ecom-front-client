@@ -57,7 +57,8 @@ const Wrapper = styled.div`
 `;
 
 export default function Sort() {
-    const { gridView, toggleGriView, sort, setSort } = useFilterContext();
+    const { gridView, toggleGriView, sort, setSort, filteredProducts } =
+        useFilterContext();
 
     return (
         <Wrapper>
@@ -75,7 +76,7 @@ export default function Sort() {
                     <BsList />
                 </button>
             </div>
-            <p>{} Product Found</p>
+            <p>{filteredProducts.length} Product Found</p>
             <hr />
             <div className="sort-container">
                 <span>Sort by</span>

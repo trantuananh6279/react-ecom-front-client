@@ -16,6 +16,7 @@ import ProtectedRoute from '../pages/ProtectedRoute';
 import VerifyAccountPage from '../pages/VerifyAccount';
 import ForgotPasswordPage from '../pages/ForgotPassword';
 import ResetPasswordPage from '../pages/ResetPassword';
+import WishlistPage from '../pages/Wishlist';
 
 function App() {
     const [showNav, setShowNav] = useState(true);
@@ -29,6 +30,7 @@ function App() {
                 <Route path="about" element={<AboutPage />} />
                 <Route path="products" element={<ProductsPage />} />
                 <Route path="products/:id" element={<SingleProductPage />} />
+                <Route path="wishlist" element={<WishlistPage />} />
                 <Route path="cart" element={<CartPage />} />
                 <Route
                     path="login"

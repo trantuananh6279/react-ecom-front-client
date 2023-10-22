@@ -8,9 +8,31 @@ export function ProductProvider({ children }) {
     const [isProductLoading, setIsProductLoading] = useState(false);
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+    const [wishedProductIds, setWishedProductIds] = useState([]);
+    const [wishedProducts, setWishedProducts] = useState([]);
 
     function toggleSidebar() {
         setIsOpenSidebar((prev) => !prev);
+    }
+
+    function getWishedProductIds() {
+        customFetch.get('/wish-list').then((res) => {
+            const productIds = res.data.map((p) => p.product._id);
+            setWishedProductIds(productIds);
+        });
+    }
+
+    function getWishedProducts() {
+        customFetch.get('/wish-list').then((res) => {
+            const products = res.data.map((p) => p.product);
+            setWishedProducts(products);
+        });
+    }
+
+    function onRemoveFromWishlist(_id) {
+        setWishedProducts((products) => {
+            return [...products.filter((p) => p._id.toString() !== _id)];
+        });
     }
 
     useEffect(() => {
@@ -38,6 +60,11 @@ export function ProductProvider({ children }) {
                 featuredProducts,
                 isOpenSidebar,
                 toggleSidebar,
+                wishedProductIds,
+                getWishedProductIds,
+                wishedProducts,
+                getWishedProducts,
+                onRemoveFromWishlist,
             }}
         >
             {children}

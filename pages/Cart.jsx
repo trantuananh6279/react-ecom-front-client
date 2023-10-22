@@ -92,7 +92,7 @@ export default function CartPage() {
                 <div className="container">
                     <h3>Thanks for your order!</h3>
                     <p>We will email when your order will be sent</p>
-                    <Link className="btn" to={'/'}>
+                    <Link className="btn" to={'/products'}>
                         Continue shopping
                     </Link>
                 </div>
