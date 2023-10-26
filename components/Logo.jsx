@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-const StyledImg = styled.img`
-    width: 100px;
-    padding: 8px 0;
-`;
+import StyledImg from '../styles/Logo';
 
 export default function Logo() {
     return (

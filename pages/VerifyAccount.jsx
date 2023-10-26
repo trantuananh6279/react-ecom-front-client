@@ -33,13 +33,10 @@ export default function VerifyAccountPage() {
         const data = { email, verificationToken };
         customFetch
             .post(`/auth/verify-email`, data)
-            .then(() => {
-                setIsLoading(false);
-            })
             .catch(() => {
-                setIsLoading(false);
                 setError(true);
-            });
+            })
+            .finally(() => setIsLoading(false));
     }, []);
 
     if (error) {

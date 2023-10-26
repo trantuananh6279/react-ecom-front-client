@@ -30,12 +30,14 @@ export default function SingleProductPage() {
         customFetch
             .get(`/products/${id}`)
             .then((res) => {
-                setSingleProduct(res.data);
-                setSingleProductLoading(false);
+                const data = {
+                    ...res.data,
+                    isLiked: res.data.wishedProduct?.length > 0,
+                };
+                setSingleProduct(data);
             })
-            .catch((err) => {
-                console.log(err);
-                setIsProductLoading(false);
+            .finally(() => {
+                setSingleProductLoading(false);
             });
     }, [id]);
 
@@ -55,6 +57,7 @@ export default function SingleProductPage() {
                         <SingleProductItem
                             singleProduct={singleProduct}
                             id={id}
+                            wished={singleProduct.isLiked}
                         />
                     </Center>
                 </>
