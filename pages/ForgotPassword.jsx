@@ -60,14 +60,13 @@ export default function ForgotPasswordPage({ setShowNav }) {
         await customFetch
             .post(`/auth/forgot-password`, { email })
             .then((res) => {
-                setIsLoading(false);
                 toast.success('Please check your email to reset password');
                 navigate('/login');
             })
             .catch((err) => {
                 toast.error(err?.response?.data?.msg);
-                setIsLoading(false);
-            });
+            })
+            .finally(() => setIsLoading(false));
     }
 
     useEffect(() => {

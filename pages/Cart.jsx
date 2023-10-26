@@ -122,7 +122,7 @@ export default function CartPage() {
                     <hr className="top-hr" />
                     <div className="cart-list">
                         {products.map((product, i) => (
-                            <CartItem key={i} {...product} />
+                            <CartItem key={i} product={product} />
                         ))}
                     </div>
                     <hr />

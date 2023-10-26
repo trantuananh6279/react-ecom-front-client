@@ -108,14 +108,13 @@ export default function LoginPage({ setShowNav }) {
             .post(`/auth/login`, { email, password })
             .then((res) => {
                 addUserToLocalStorage(res.data.user);
-                setIsLoading(false);
                 toast.success(`Welcome ${res.data.user.name}`);
                 navigate('/');
             })
             .catch((err) => {
-                setIsLoading(false);
                 toast.error('Invalid Credentials');
-            });
+            })
+            .finally(() => setIsLoading(false));
     }
 
     useEffect(() => {
@@ -168,7 +167,7 @@ export default function LoginPage({ setShowNav }) {
                                 ? "Don't have an account? "
                                 : ' Already have an account? '}
 
-                            <span>{isMember ? 'Login' : 'Register'}</span>
+                            <span>{isMember ? 'Register' : 'Login'}</span>
                         </Link>
                     </form>
                 </div>

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useProductContext } from '../context/ProductContext';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Center from '../components/Center';
@@ -26,42 +25,37 @@ const Wrapper = styled.div`
 `;
 
 export default function WishlistPage() {
-    const { getWishedProducts, wishedProducts } = useProductContext();
-    const location = useLocation().pathname;
+    // useEffect(() => {
+    //     getWishedProducts(location);
+    // }, []);
 
-    useEffect(() => {
-        getWishedProducts(location);
-    }, []);
-
-    if (wishedProducts.length === 0) {
-        return (
-            <Wrapper>
-                <Center>
-                    <div className="empty-wishlist">
-                        <h4>Your wishlist is empty</h4>
-                        <Link to={'/'} className="btn">
-                            Go back home
-                        </Link>
-                    </div>
-                </Center>
-            </Wrapper>
-        );
-    }
-
-    console.log(wishedProducts);
+    // if (wishedProducts.length === 0) {
+    //     return (
+    //         <Wrapper>
+    //             <Center>
+    //                 <div className="empty-wishlist">
+    //                     <h4>Your wishlist is empty</h4>
+    //                     <Link to={'/'} className="btn">
+    //                         Go back home
+    //                     </Link>
+    //                 </div>
+    //             </Center>
+    //         </Wrapper>
+    //     );
+    // }
 
     return (
         <Wrapper>
             <Breadcrumb title={'wishlist'} />
             <Center>
                 <div className="wishlist-container">
-                    {wishedProducts?.map((wishedProduct, i) => (
+                    {/* {wishedProducts?.map((wishedProduct, i) => (
                         <ListViewItem
                             {...wishedProduct}
                             key={i}
                             wished={true}
                         />
-                    ))}
+                    ))} */}
                 </div>
             </Center>
         </Wrapper>

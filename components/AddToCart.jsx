@@ -1,16 +1,8 @@
-import styled from 'styled-components';
 import AmountButton from './AmountButton';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../context/CartContext';
-
-const Wrapper = styled.div`
-    margin-top: 2rem;
-    .btn {
-        margin-top: 16px;
-        font-size: 14px;
-    }
-`;
+import Wrapper from '../styles/AddToCart';
 
 export default function AddToCart({ singleProduct }) {
     const { _id, stock } = singleProduct;
