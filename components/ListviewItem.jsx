@@ -4,38 +4,58 @@ import formatPrice from '../utils/formatPrice';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { customFetch } from '../utils/axios';
 import Wrapper from '../styles/ListviewItem';
+import { useProductContext } from '../context/ProductContext';
+import { getUserFromLocalStorage } from '../utils/localStorage';
+import { toast } from 'react-toastify';
 
-export default function ListViewItem({ product, wished = false }) {
+export default function ListViewItem({ product, wished = false, _id }) {
+    const {
+        filteredProducts,
+        setFilteredProducts,
+        featuredProducts,
+        setFeaturedProducts,
+        removeProductFromWishlist,
+    } = useProductContext();
     const [isBusy, setIsBusy] = useState(false);
+    const user = getUserFromLocalStorage();
 
-    // async function addToWishlist(e, productId) {
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     setIsBusy(true);
-    //     await customFetch
-    //         .post('/wish-list', { productId })
-    //         .then(() => {
-    //             const tempProducts = [...filteredProducts];
-    //             const tempProductIndex = tempProducts.findIndex(
-    //                 (n) => n._id === productId
-    //             );
-    //             tempProducts[tempProductIndex].isLiked =
-    //                 !tempProducts[tempProductIndex].isLiked;
-    //             setFilteredProducts(tempProducts);
+    async function addToWishlist(e, productId) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!user) {
+            toast.error('Please login to add your wishlist');
+            return;
+        }
+        setIsBusy(true);
+        await customFetch
+            .post('/wish-list', { productId })
+            .then(() => {
+                const tempProducts = [...filteredProducts];
+                const tempProductIndex = tempProducts.findIndex(
+                    (n) => n._id === productId
+                );
+                tempProducts[tempProductIndex].isLiked =
+                    !tempProducts[tempProductIndex].isLiked;
+                setFilteredProducts(tempProducts);
 
-    //             if (product.featured === true) {
-    //                 const tempFeaturedProducts = [...featuredProducts];
-    //                 const tempFeaturedProductIndex =
-    //                     tempFeaturedProducts.findIndex(
-    //                         (n) => n._id === productId
-    //                     );
-    //                 tempFeaturedProducts[tempFeaturedProductIndex].isLiked =
-    //                     !tempFeaturedProducts[tempFeaturedProductIndex].isLiked;
-    //                 setFeaturedProducts(tempFeaturedProducts);
-    //             }
-    //         })
-    //         .finally(() => setIsBusy(false));
-    // }
+                const nextValue = !wished;
+                if (nextValue === false) {
+                    removeProductFromWishlist(_id);
+                }
+
+                if (product.featured === true) {
+                    const tempFeaturedProducts = [...featuredProducts];
+                    const tempFeaturedProductIndex =
+                        tempFeaturedProducts.findIndex(
+                            (n) => n._id === productId
+                        );
+                    tempFeaturedProducts[tempFeaturedProductIndex].isLiked =
+                        !tempFeaturedProducts[tempFeaturedProductIndex].isLiked;
+                    setFeaturedProducts(tempFeaturedProducts);
+                }
+            })
+            .finally(() => setIsBusy(false));
+    }
 
     return (
         <Wrapper>
