@@ -2,7 +2,7 @@ import ProductItem from './ProductItem';
 import { Link } from 'react-router-dom';
 import Center from './Center';
 import Spinner from './Spinner';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useProductContext } from '../context/ProductContext';
 import Wrapper from '../styles/Featured';
 

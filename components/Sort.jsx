@@ -1,10 +1,21 @@
 import { BsList, BsGridFill } from 'react-icons/bs';
 import { useProductContext } from '../context/ProductContext';
 import Wrapper from '../styles/Sort';
+import { useEffect } from 'react';
 
 export default function Sort() {
-    const { gridView, toggleGriView, sort, setSort, filteredProducts } =
-        useProductContext();
+    const {
+        gridView,
+        toggleGriView,
+        sort,
+        setSort,
+        filteredProducts,
+        loadProducts,
+    } = useProductContext();
+
+    useEffect(() => {
+        loadProducts();
+    }, [sort]);
 
     return (
         <Wrapper>

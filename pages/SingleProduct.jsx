@@ -58,6 +58,7 @@ export default function SingleProductPage() {
                             singleProduct={singleProduct}
                             id={id}
                             wished={singleProduct.isLiked}
+                            setSingleProduct={setSingleProduct}
                         />
                     </Center>
                 </>

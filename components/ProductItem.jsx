@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { customFetch } from '../utils/axios';
 import { useProductContext } from '../context/ProductContext';
 import Wrapper from '../styles/ProductItem';
+import { getUserFromLocalStorage } from '../utils/localStorage';
+import { toast } from 'react-toastify';
 
 export default function ProductItem({ product, wished = false }) {
     const {
@@ -14,10 +16,15 @@ export default function ProductItem({ product, wished = false }) {
         setFeaturedProducts,
     } = useProductContext();
     const [isBusy, setIsBusy] = useState(false);
+    const user = getUserFromLocalStorage();
 
     async function addToWishlist(e, productId) {
         e.preventDefault();
         e.stopPropagation();
+        if (!user) {
+            toast.error('Please login to add your wishlist');
+            return;
+        }
         setIsBusy(true);
         await customFetch
             .post('/wish-list', { productId })

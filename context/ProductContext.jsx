@@ -25,6 +25,8 @@ export function ProductProvider({ children }) {
     const [maxPrice, setMaxPrice] = useState(0);
     const [sort, setSort] = useState('price-lowest');
     const debouncedSearch = useCallback(debounce(searchProducts, 500), []);
+    const [wishedProducts, setWishedProducts] = useState([]);
+    const [isWishedProductLoading, setIsWishedProductLoading] = useState(false);
 
     function toggleSidebar() {
         setIsOpenSidebar((prev) => !prev);
@@ -66,14 +68,7 @@ export function ProductProvider({ children }) {
             });
     }
 
-    useEffect(() => {
-        customFetch.get('/products/max-price').then((res) => {
-            setMaxPrice(res.data);
-            setPrice(res.data);
-        });
-    }, []);
-
-    useEffect(() => {
+    function loadProducts() {
         setIsLoading(true);
         if (search !== '' || price !== '') {
             debouncedSearch(search, price, category, company, sort);
@@ -93,7 +88,35 @@ export function ProductProvider({ children }) {
                 setFilteredProducts(data);
             })
             .finally(() => setIsLoading(false));
-    }, [category, company, sort, search, price]);
+    }
+
+    function getWishedProducts() {
+        setIsWishedProductLoading(true);
+        customFetch
+            .get('/wish-list')
+            .then((res) => {
+                setWishedProducts(res.data);
+            })
+            .finally(() => setIsWishedProductLoading(false));
+    }
+
+    function removeProductFromWishlist(wishedProductId) {
+        const tempWishedProducts = wishedProducts.filter(
+            (p) => p._id !== wishedProductId
+        );
+        setWishedProducts(tempWishedProducts);
+    }
+
+    useEffect(() => {
+        loadProducts();
+    }, [category, company, price, sort, search]);
+
+    useEffect(() => {
+        customFetch.get('/products/max-price').then((res) => {
+            setMaxPrice(res.data);
+            setPrice(res.data);
+        });
+    }, []);
 
     return (
         <ProductContext.Provider
@@ -109,6 +132,7 @@ export function ProductProvider({ children }) {
                 filteredProducts,
                 setFilteredProducts,
                 isLoading,
+                search,
                 setSearch,
                 price,
                 maxPrice,
@@ -119,6 +143,11 @@ export function ProductProvider({ children }) {
                 setCompany,
                 sort,
                 setSort,
+                loadProducts,
+                isWishedProductLoading,
+                wishedProducts,
+                getWishedProducts,
+                removeProductFromWishlist,
             }}
         >
             {children}

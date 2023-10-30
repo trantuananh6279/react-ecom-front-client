@@ -1,5 +1,5 @@
 import formatPrice from '../utils/formatPrice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useProductContext } from '../context/ProductContext';
 import Wrapper from '../styles/Filter';
 
@@ -10,6 +10,7 @@ const initialValues = {
 
 export default function Filter() {
     const {
+        search,
         setSearch,
         price,
         maxPrice,
@@ -18,8 +19,13 @@ export default function Filter() {
         setCategory,
         company,
         setCompany,
+        loadProducts,
     } = useProductContext();
     const [values, setValues] = useState(initialValues);
+
+    useEffect(() => {
+        loadProducts();
+    }, [category, company, search, price]);
 
     return (
         <Wrapper>
