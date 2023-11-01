@@ -29,14 +29,15 @@ export default function ProductItem({ product, wished = false }) {
         await customFetch
             .post('/wish-list', { productId })
             .then(() => {
-                const tempProducts = [...filteredProducts];
-                const tempProductIndex = tempProducts.findIndex(
-                    (n) => n._id === productId
-                );
-                tempProducts[tempProductIndex].isLiked =
-                    !tempProducts[tempProductIndex].isLiked;
-                setFilteredProducts(tempProducts);
-
+                if (filteredProducts) {
+                    const tempProducts = [...filteredProducts];
+                    const tempProductIndex = tempProducts.findIndex(
+                        (n) => n._id === productId
+                    );
+                    tempProducts[tempProductIndex].isLiked =
+                        !tempProducts[tempProductIndex].isLiked;
+                    setFilteredProducts(tempProducts);
+                }
                 if (product.featured === true) {
                     const tempFeaturedProducts = [...featuredProducts];
                     const tempFeaturedProductIndex =

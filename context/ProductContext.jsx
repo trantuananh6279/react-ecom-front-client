@@ -107,9 +107,17 @@ export function ProductProvider({ children }) {
         setWishedProducts(tempWishedProducts);
     }
 
-    useEffect(() => {
-        loadProducts();
-    }, [category, company, price, sort, search]);
+    function clearFilters() {
+        setSearch('');
+        setCategory('all');
+        setCompany('all');
+        setPrice(
+            customFetch.get('/products/max-price').then((res) => {
+                setMaxPrice(res.data);
+                setPrice(res.data);
+            })
+        );
+    }
 
     useEffect(() => {
         customFetch.get('/products/max-price').then((res) => {
@@ -148,6 +156,7 @@ export function ProductProvider({ children }) {
                 wishedProducts,
                 getWishedProducts,
                 removeProductFromWishlist,
+                clearFilters,
             }}
         >
             {children}
