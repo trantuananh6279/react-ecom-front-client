@@ -5,7 +5,7 @@ import Wrapper from '../styles/Filter';
 
 const initialValues = {
     categories: ['all', 'bedroom', 'office', 'kitchen'],
-    companies: ['ikea', 'liddy', 'marcos', 'caressa'],
+    companies: ['all', 'ikea', 'liddy', 'marcos', 'caressa'],
 };
 
 export default function Filter() {
@@ -20,6 +20,7 @@ export default function Filter() {
         company,
         setCompany,
         loadProducts,
+        clearFilters,
     } = useProductContext();
     const [values, setValues] = useState(initialValues);
 
@@ -36,6 +37,7 @@ export default function Filter() {
                         name="text"
                         placeholder="Search"
                         className="search-input"
+                        value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
@@ -78,7 +80,9 @@ export default function Filter() {
                         onChange={(e) => setPrice(+e.target.value)}
                     />
                 </div>
-                <button className="clear-btn">Clear filter</button>
+                <button className="clear-btn" onClick={clearFilters}>
+                    Clear filter
+                </button>
             </div>
         </Wrapper>
     );
